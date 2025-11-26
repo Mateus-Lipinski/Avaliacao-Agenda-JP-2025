@@ -7,7 +7,7 @@ export const getAtendimentos = async () => {
         return [] // throw new Error('')
     }
 
-    return response.data.clientes
+    return response.data.atendimento
 }
 
 export const createAtendimento = async (atendimento) => {

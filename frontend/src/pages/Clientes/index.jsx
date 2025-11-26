@@ -37,12 +37,13 @@ function Clientes() {
             {
                 conteudo.length == 0
                     ? <div>
-                        <label>Nenhum ronaldo :v</label>
+                        <label>Nenhum cliente cadastrado (Ou não está logado)</label>
                     </div>
                     : conteudo.map(clientes =>
                         <div className='card char' key={clientes.id}>
-                            <h2>{clientes.nome}</h2>
-                            <h2>{clientes.email}</h2>
+                            <h2>Cliente Nº: {clientes.id}</h2>
+                            <h2>Nome: {clientes.nome}</h2>
+                            <h2>Email: {clientes.email}</h2>
                             <div className='actions'>
                                 <button
                                     type='button'

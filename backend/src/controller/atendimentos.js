@@ -24,8 +24,8 @@ class ControllerAtendimento {
 
     async Create(req, res) {
         try {
-            const { dia, hora, valor } = req.body
-            await ServiceAtendimento.Create(dia, hora, valor)
+            const { dia, hora, valor, concluido } = req.body
+            await ServiceAtendimento.Create(dia, hora, valor, concluido)
             res.status(201).send()
         } catch (error) {
             res.status(500).send({ error: error.message })

@@ -26,7 +26,7 @@ class ServiceAtendimento {
         return atendimento
     }
 
-    async Create(dia, hora, valor) {
+    async Create(dia, hora, valor, concluido) {
         if (!dia || !hora || !valor) {
             throw new Error("Faça o favor de preencher todos os campos!!!")
         }
@@ -39,7 +39,7 @@ class ServiceAtendimento {
             dia,
             hora,
             valor,
-            concluido: false
+            concluido
         })
     }
 

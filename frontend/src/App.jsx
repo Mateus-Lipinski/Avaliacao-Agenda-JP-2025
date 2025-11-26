@@ -2,12 +2,15 @@ import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Route, Routes } from 'react-router-dom'
-import Clientes from './pages/Clientes'
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Clientes from './pages/Clientes'
 import CreateCliente from './pages/Clientes/create'
 import UpdateCliente from './pages/Clientes/update'
+import Atendimentos from './pages/Atendimentos'
+import CreateAtendimento from './pages/Atendimentos/create'
+import UpdateAtendimento from './pages/Atendimentos/update'
 import { AuthProvider } from './auth/Content'
-import Login from './pages/Login'
 import PrivateRouter from './router/PrivateRouter'
 
 function App() {
@@ -22,11 +25,17 @@ function App() {
         <Route path='login' element={<Login />}/>
 
         <Route element={<PrivateRouter />}>
+          {/* Rotas do cliente */}
           <Route path='/clientes' element={<Clientes/>} />
           <Route path='/create/cliente' element={<CreateCliente/>} />
           <Route path='/update/cliente' element={<UpdateCliente/>} />
         </Route>
 
+          {/* Rotas do atendimento */}
+          <Route path='/atendimentos' element={<Atendimentos />} />
+          <Route path='/create/atendimento' element={<CreateAtendimento />} />
+          <Route path='/update/atendimento' element={<UpdateAtendimento />} />
+      
       </Routes>
 
       <Footer />

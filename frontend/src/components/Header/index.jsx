@@ -27,11 +27,15 @@ function Header() {
                     </Link>
             }
 
-            <Link to='/atendimentos'>
-                <button>
-                    Atendimentos
-                </button>
-            </Link>
+            {
+                !token
+                    ? null
+                    : <Link to='/atendimentos'>
+                        <button>
+                            Atendimentos
+                        </button>
+                    </Link>
+            }
 
             <Link to='/login'>
                 <button>

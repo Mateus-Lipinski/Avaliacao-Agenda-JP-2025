@@ -6,9 +6,10 @@ import { updateAtendimento } from "../../api/atendimentos";
 export default function UpdateUser() {
     const navigate = useNavigate()
     const [atendimento, setAtendimento] = useState({
-        nome: '',
-        email: '',
-        senha: '',
+        dia: '',
+        hora: '',
+        valor: '',
+        concluido: false
     })
 
     // adicionar userLocation novo para pegar o state(usuario) passado anteriormente
@@ -64,7 +65,7 @@ export default function UpdateUser() {
                     <label>Concluido:</label>
                     <select
                         name="concluido"
-                        value={atendimento.concluido ? "true" : "false"}
+                        value={atendimento.concluido}
                         onChange={(e) =>
                             setAtendimento({ ...atendimento, concluido: e.target.value === "true" })
                         }

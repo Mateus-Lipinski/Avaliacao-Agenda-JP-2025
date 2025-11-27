@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginCliente } from '../../api/clientes';
 import { AuthContext } from '../../auth/Content'
+import './style.css'
 
 export default function Login() {
     const { login } = useContext(AuthContext) 
@@ -11,6 +12,10 @@ export default function Login() {
 
     const handleBackClick = () => {
         navigate('/');
+    };
+
+    const handleSignUP = () => {
+        navigate('/signup');
     };
 
     const handleLogin = async (e) => {
@@ -38,7 +43,11 @@ export default function Login() {
                     <label htmlFor="senha">Senha:</label>
                     <input type="password" id="senha" required value={senha} onChange={(e) => setSenha(e.target.value)} />
                 </div>
-                <p>Não possui conta? Cadastre-se</p>
+                <p className='text-signup'>Não possui conta? 
+                    <button className='button-signup'
+                        onClick={handleSignUP}
+                    >Cadastre-se</button>
+                </p>
                 <button className="button"
                     type="submit"
                     onClick={handleLogin}

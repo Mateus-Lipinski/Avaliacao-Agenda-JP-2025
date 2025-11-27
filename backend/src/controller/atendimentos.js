@@ -2,12 +2,23 @@ import ServiceAtendimento from '../service/atendimentos.js'
 
 class ControllerAtendimento {
 
-    async FindAll(req, res) {
+    async FindAllByCliente(req, res) {
         try {
 
-            const clienteId = req.params.clienteId
+            // Pq não usar 'params'
+            // pq no headers ele vem direto, já na desgraça do params teria q fazer uma gambiarra enorme, ou seja n compensa
+            const clienteId = req.headers.cliente.id
 
-            const atendimentos = await ServiceAtendimento.FindAll(clienteId)
+            const atendimentos = await ServiceAtendimento.FindAllByCliente(clienteId)
+            res.status(200).send({ atendimentos })
+        } catch (error) {
+            res.status(500).send({ error: error.message })
+        }
+    }
+
+    async FindAll(_, res) {
+        try {
+            const atendimentos = await ServiceAtendimento.FindAll()
             res.status(200).send({ atendimentos })
         } catch (error) {
             res.status(500).send({ error: error.message })
@@ -18,8 +29,8 @@ class ControllerAtendimento {
         try {
             const id = req.params.id
 
-            const cliente = await ServiceAtendimento.FindOne(id)
-            res.status(200).send({ cliente })
+            const atendimento = await ServiceAtendimento.FindOne(id)
+            res.status(200).send({ atendimento })
         } catch (error) {
             res.status(500).send({ error: error.message })
         }
@@ -27,7 +38,11 @@ class ControllerAtendimento {
 
     async Create(req, res) {
         try {
-            const clienteId = req.params.clienteId
+
+            // Pq não usar 'params'
+            // pq no headers ele vem direto, já na desgraça do params teria q fazer uma gambiarra enorme, ou seja n compensa
+            const clienteId = req.headers.cliente.id
+
             const { dia, hora, valor, concluido } = req.body
             await ServiceAtendimento.Create(dia, hora, valor, concluido, clienteId)
             res.status(201).send()

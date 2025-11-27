@@ -1,15 +1,22 @@
 import Atendimento from '../model/atendimentos.js'
-import bcrypt from 'bcrypt'
-
-const jwt_segredo = "S3gREd0L3G4l"
-const SALT = 10 // Deixe entre 10 e 12
+import Cliente from '../model/clientes.js'
 
 class ServiceAtendimento {
 
-    async FindAll() {
-        const atendimento = await Atendimento.findAll()
+    async FindAll(clienteId) {
 
-        return atendimento
+        const cliente = await Cliente.findByPk(clienteId)
+        if(!cliente) {
+            throw new Error(`Cliente ${id} não encontrado para conclusão de cadastro!`)
+        }
+
+        const atendimentos = await Atendimento.findAll({
+            where: {
+                clienteId: clienteId
+            }
+        })
+
+        return atendimentos
     }
 
     async FindOne(id) {
@@ -26,9 +33,14 @@ class ServiceAtendimento {
         return atendimento
     }
 
-    async Create(dia, hora, valor, concluido) {
-        if (!dia || !hora || !valor) {
+    async Create(dia, hora, valor, concluido, clienteId) {
+        if (!dia || !hora || !valor || concluido == null ) {
             throw new Error("Faça o favor de preencher todos os campos!!!")
+        }
+
+        const cliente = await Cliente.findByPk(clienteId)
+        if(!cliente) {
+            throw new Error(`Cliente ${id} não encontrado para conclusão de cadastro!`)
         }
 
         if( dia < 1 || dia > 31) {
@@ -39,7 +51,8 @@ class ServiceAtendimento {
             dia,
             hora,
             valor,
-            concluido
+            concluido,
+            clienteId
         })
     }
 

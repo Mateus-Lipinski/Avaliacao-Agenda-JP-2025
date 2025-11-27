@@ -1,4 +1,5 @@
 import database from "../config/database.js"
+import Atendimento from './atendimentos.js'
 
 class Cliente {
 
@@ -19,6 +20,10 @@ class Cliente {
                 type: database.db.Sequelize.STRING
             }
         })
+
+        this.model.hasMany(Atendimento, { foreignKey: 'clienteId', onDelete: 'CASCADE' });
+        Atendimento.belongsTo(this.model, { foreignKey: 'clienteId' });
+        
     }
 }
 

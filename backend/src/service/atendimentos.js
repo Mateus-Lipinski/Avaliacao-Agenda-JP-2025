@@ -3,7 +3,7 @@ import Cliente from '../model/clientes.js'
 
 class ServiceAtendimento {
 
-    async FindAll(clienteId) {
+    async FindAllByCliente(clienteId) {
 
         const cliente = await Cliente.findByPk(clienteId)
         if(!cliente) {
@@ -16,6 +16,11 @@ class ServiceAtendimento {
             }
         })
 
+        return atendimentos
+    }
+
+    async FindAll() {
+        const atendimentos = await Atendimento.findAll()
         return atendimentos
     }
 

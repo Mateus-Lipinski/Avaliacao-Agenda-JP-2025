@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { createCliente } from "../../api/clientes";
+import './style.css'
 
 export default function CreateCliente() {
     const navigate = useNavigate()
@@ -29,25 +30,28 @@ export default function CreateCliente() {
 
     return (
         <main>
-            <form>
-                <div>
-                    <label>Nome:</label>
-                    <input type="text" name="nome" id="nome" value={cliente.nome} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email" id="email" value={cliente.email} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Senha:</label>
-                    <input type="password" name="senha" id="senha" value={cliente.senha} onChange={handleChange} />
-                </div>
-                <button type="reset">Limpar</button>
-                <button
-                    type="submit"
-                    onClick={handleSave}
-                >Enviar</button>
-            </form>
+            <div className="create-container">
+                <form className="create-form">
+                    <h2>Criando cliente</h2>
+                    <div className="input-group">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" id="nome" value={cliente.nome} onChange={handleChange} />
+                    </div>
+                    <div className="input-group">
+                        <label>Email:</label>
+                        <input type="email" name="email" id="email" value={cliente.email} onChange={handleChange} />
+                    </div>
+                    <div className="input-group">
+                        <label>Senha:</label>
+                        <input type="password" name="senha" id="senha" value={cliente.senha} onChange={handleChange} />
+                    </div>
+                    <button type="reset">Limpar</button>
+                    <button
+                        type="submit"
+                        onClick={handleSave}
+                        >Enviar</button>
+                </form>
+            </div>
         </main>
     )
 }

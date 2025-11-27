@@ -34,6 +34,9 @@ function Atendimentos() {
             <Link to={'/create/atendimento'}>
                 <button>Criar</button>
             </Link>
+            <Link to={'/all_atendimentos'}>
+                <button>Ver todos os Atendimentos</button>
+            </Link>
             {
                 conteudo.length == 0
                     ? <div>
